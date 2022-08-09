@@ -4,3 +4,9 @@ Pandas
 Numpy
 PyGRNN
 Sklearn
+flask_httpauth
+Jinja2==2.11.2
+MarkupSafe==1.1.1
+itsdangerous==1.1.0
+Werkzeug==1.0.1
+statsmodels
