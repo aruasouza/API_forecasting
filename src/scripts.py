@@ -1,3 +1,5 @@
+# Criação de scripts utilizados na análise da série temporal
+
 import statsmodels.api as sm
 import math
 from scipy.optimize import curve_fit
@@ -6,11 +8,14 @@ from datetime import timedelta
 from sklearn import preprocessing
 import numpy as np
 
+# Função que verifica se uma série precisa ser redimensionada de diária para semanal
 
 def verify_vibration(serie):
     est = np.array(serie_estocastica(preprocessing.minmax_scale(serie)))
     vib = est.std()
     return vib > 0.05
+
+# Função que verifica se existe sazonalidade em uma série
 
 def autocorrelation(values,intervalo):
     if 28 < intervalo < 32:
@@ -30,6 +35,8 @@ def autocorrelation(values,intervalo):
     print('Seasonality test result:',max(auto))
     return max(auto)
 
+# Função que transforma uma série em estocástica
+
 def serie_estocastica(values):
     values = list(values)
     new_values = [0]
@@ -37,12 +44,16 @@ def serie_estocastica(values):
         new_values.append(values[i] - values[i - 1])
     return new_values
 
+# Função que converte uma predição estocástica em uma predição normal
+
 def convert_prediction_estocastica(last_value,predictions):
     predictions = list(predictions)
     new_pred = [last_value]
     for i in range(len(predictions)):
         new_pred.append(new_pred[-1] + predictions[i])
     return new_pred[1:]
+
+# Função que adiciona sazonalidade a uma predição que teve a sazonalidade removida
 
 def convert_prediction_log(y,predictions,popt):
     len_y = len(y)
@@ -52,22 +63,32 @@ def convert_prediction_log(y,predictions,popt):
     estocastica = serie_estocastica(exp)
     return convert_prediction_estocastica(y[-1],estocastica)
 
+# Função que identifica se um dia da semana é domingo
+
 def monday(x):
     if x == 6:
         return 1
     return 0
 
+# Função linear (utilizada para regressão)
+
 def linear(x,a,b):
     return (a * x) + b
 
+# Função quadrática (utilizada para regressão)
+
 def square(x,a,b,c):
     return (a * (x ** 2)) + (b * x) + c
+
+# Função que realiza uma regressão quadrática em um conjunto de dados
 
 def fit(xdata,ydata,func):
     x = list(xdata)
     y = list(ydata)
     popt,pcov = curve_fit(func,x,y)
     return popt
+
+# Função que verifica o intervalo médio entre observações de uma série temporal
 
 def intervalo_medio(datas):
     datas.sort_values()
@@ -76,6 +97,8 @@ def intervalo_medio(datas):
         delta = datas[i] - datas[i - 1]
         intervalos.append(delta.days)
     return sum(intervalos) / len(intervalos)
+
+# Função que cria datas futuras para gerar a previsão
 
 def criar_tempo(periodos,intervalo,start):
     datas = [start]

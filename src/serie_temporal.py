@@ -1,3 +1,5 @@
+# Função que recebe a série temporal e retorna a predição
+
 import numpy as np
 import pandas as pd
 from sklearn import preprocessing

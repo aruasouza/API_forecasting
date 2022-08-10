@@ -1,3 +1,5 @@
+# Criação do servidor que conterá os principais objetos
+
 from flask import Flask
 from flask_restful import Api
 from src.security import Auth

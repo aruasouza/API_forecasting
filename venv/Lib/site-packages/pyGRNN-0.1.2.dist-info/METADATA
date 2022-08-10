@@ -1,0 +1,26 @@
+Metadata-Version: 2.1
+Name: pyGRNN
+Version: 0.1.2
+Summary: Python implementation of General Regression Neural Network (Nadaraya-Watson Estimator). A Feature Selection module based on GRNN is also provided
+Home-page: https://github.com/federhub/pyGRNN
+Author: Federico Amato
+Author-email: federico.amato@unil.ch
+License: MIT
+Download-URL: https://github.com/federhub/pyGRNN/archive/v0.1.2tar.gz
+Keywords: Machine Learning,General Regression Neural Network,Kernel Regression,Feature Selection
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3.6
+Requires-Dist: pandas
+Requires-Dist: numpy
+Requires-Dist: seaborn
+Requires-Dist: scikit-learn
+Requires-Dist: matplotlib
+Requires-Dist: scipy
+
+UNKNOWN
+
+

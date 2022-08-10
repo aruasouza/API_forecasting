@@ -1,3 +1,5 @@
+# Código principal
+
 from src.server import server
 from src.resources import *
 
